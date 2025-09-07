@@ -8,12 +8,31 @@ In this notebook we seek to explore this use case with open data and workflows p
 
 ## Overview
 
-The `energy_access.ipynb` notebook creates a multi-layered geospatial visualization that helps identify areas with potential energy access gaps in Zambia by overlaying:
+This repository contains interactive Python notebooks that create comprehensive geospatial visualizations to help identify areas with potential energy access gaps in Zambia by overlaying:
 
 1. **Population Density** - Shows where people live using WorldPop data
 2. **Power Lines Network** - Maps the electrical transmission grid by voltage level
 3. **Substations** - Plots locations of electrical substations
-4. **10km Service Areas** - Visualizes potential energy access coverage with 10km radius buffers around substations
+
+## Notebooks
+
+### `energy_access.ipynb` (Original Analysis)
+The original notebook creates a multi-layered geospatial visualization with:
+- Population density data from WorldPop
+- Power infrastructure data from OpenStreetMap using Overpass API
+- Individual and combined visualizations with proper layering
+- GIS analysis with 10km service area buffers around substations
+- Different voltage levels in the transmission network
+
+### `zambia_population_energy_map.ipynb` (Enhanced Version)
+An enhanced notebook specifically designed for high-quality visualization with:
+- ✅ **WorldPop Population Density**: Downloads Zambia's population density TIFF from WorldPop as base layer
+- ✅ **Transmission Lines**: Uses overpy package with Overpass queries for OpenStreetMap power lines
+- ✅ **Voltage-Specific Colors**: Each voltage level has unique color coding for optimal visibility
+- ✅ **Substations Layer**: Black markers with **EXACT opacity=1.0** as top layer
+- ✅ **Proper Layering**: WorldPop TIFF → Transmission Lines → Substations
+- ✅ **Light Theme**: Optimized for light background with excellent contrast
+- ✅ **Production Quality**: Enhanced styling, legends, and professional presentation
 
 ## Key Features
 
@@ -22,22 +41,31 @@ The `energy_access.ipynb` notebook creates a multi-layered geospatial visualizat
 - Creates individual and combined visualizations with proper layering
 - Implements GIS analysis techniques to estimate energy access coverage
 - Visualizes different voltage levels in the transmission network
+- **Enhanced color schemes** optimized for light theme and contrast
+- **Professional styling** with comprehensive legends and documentation
+- **High-resolution output** suitable for reports and presentations
 
 ## Technologies Used
 
-- **Python Libraries**: GeoPandas, Matplotlib, Rasterio, NumPy, Overpy
+- **Python Libraries**: GeoPandas, Matplotlib, Rasterio, NumPy, Overpy, Shapely, Pandas
 - **Data Sources**: WorldPop, OpenStreetMap
 - **Spatial Analysis**: Coordinate system transformations, buffering, geometric operations
+- **Visualization**: Enhanced matplotlib styling with optimal contrast
 
 ## How to Use
 
 1. Clone this repository
-2. Ensure required dependencies are installed
-3. Run the Jupyter notebook to generate visualizations
-4. The notebook will automatically download required population density data
+2. Install required dependencies: `pip install overpy geopandas rasterio matplotlib numpy requests shapely pandas tqdm`
+3. Run either Jupyter notebook to generate visualizations:
+   - `energy_access.ipynb` for the original analysis with service area buffers
+   - `zambia_population_energy_map.ipynb` for the enhanced three-layer visualization
+4. The notebooks will automatically download required population density data
 
 ## Output
 
-The final visualization creates an integrated map showing population density with power infrastructure overlaid. Yellow 10km buffers around substations help identify which populated areas have potential access to electricity and which areas may not.
+The visualizations create integrated maps showing population density with power infrastructure overlaid. The enhanced notebook produces publication-quality maps with:
+- **Base layer**: Population density from WorldPop with enhanced color schemes
+- **Middle layer**: Transmission lines with voltage-specific color coding
+- **Top layer**: Substations in black with full opacity for maximum visibility
 
 ![A map of Zambia shows the overlay of power infrastructure and population.](output.png "Zambia Energy Analysis Visual")
